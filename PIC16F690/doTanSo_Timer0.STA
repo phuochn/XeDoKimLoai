@@ -1,0 +1,55 @@
+
+ROM used:   736/4096 (18%)
+            736/4096 (18%) including unused fragments
+
+            0.9 Average locations per line
+            13.4 Average locations per statement
+
+RAM used:   31/254 (12%) at main() level
+            47/254 (19%) worst case
+
+Stack used: 3 worst case (1 in main + 2 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   98    55 100  doTanSo_Timer0.c
+  718     0   0  C:\Program Files (x86)\PICC\Devices\16F690.h
+----- -----
+  816    55 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   3    1             @delay_ms1
+0      7   1    0    27  1.5  ngat_dem_xung
+0    213  29    4   698  7.5  ngat1
+ Inline        13   760  4.5  @DIV3232
+0     15   2    0   262  3.7  @const603
+0     89  12    5   399  2.4  @PSTRINGCN7_9600_55_53
+0     89  12    9   415  3.7  @PRINTF_LU_9600_55_53
+0    107  15    1   609  3.8  MAIN
+0     18   2    0   208  6.3  @const611
+0     89  12    4   354  4.7  @PSTRINGC7_9600_55_53
+ Inline         0   236  3.5  @cinit1
+
+Program metrics:
+    Functions               10
+    Statements              55
+    Comments                126
+    Volume (V)              6199
+    Difficulty (D)          41.6
+    Effort to implement (E) 258043
+    Time to implement (T)   3 hours, 59 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   13
+    Maintainability (MI)    74
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00058    85  0  
+00059-007FF   647  1312  
+00800-00FFF     0  2048  
+
+
+

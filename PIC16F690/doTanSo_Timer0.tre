@@ -1,0 +1,13 @@
+ÀÄdoTanSo_Timer0
+   ÃÄMAIN  0/107  Ram=1
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÀÄ@PSTRINGC7_9600_55_53  0/89  Ram=4
+   ÃÄngat_dem_xung  0/7  Ram=0
+   ÀÄngat1  0/213  Ram=4
+      ÃÄ@DIV3232  (Inline)  Ram=13
+      ÃÄ@PSTRINGCN7_9600_55_53  0/89  Ram=5
+      ÃÄ@PRINTF_LU_9600_55_53  0/89  Ram=9
+      ÃÄ@PSTRINGCN7_9600_55_53  0/89  Ram=5
+      ÀÄ@PRINTF_LU_9600_55_53  0/89  Ram=9

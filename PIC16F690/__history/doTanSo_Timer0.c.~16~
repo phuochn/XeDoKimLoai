@@ -1,0 +1,192 @@
+#include <16F690.h>        
+#device adc = 10
+#FUSES NOWDT, hs, put, noprotect, mclr
+#use delay(internal=8000000)
+#use rs232(BAUD=9600,BITS=8,STOP=1,PARITY=N,RCV=PIN_b5,XMIT=PIN_b7)
+unsigned int16 soXung = 0, tanSoSoSanh = 0, tanSo = 0, tong = 0;  
+unsigned char dem = 0, demDLTS = 0;
+int1 enaBuzzer = 0, enaDLTS = 0;
+#define BUZZER  pin_c7
+#define SIGNAL  pin_c5
+#use fast_io(a)
+#use fast_io(c)
+
+//!#INT_EXT 
+//!void ngat_dem_xung()
+//!{
+//!   soXung = soXung + 1;
+//!}
+//!#int_timer1
+//!void ngat1()
+//!{
+//!   dem++;
+//!   if(enaBuzzer && (!enaDLTS))
+//!      output_toggle(BUZZER);
+//!   else 
+//!      output_low(BUZZER);
+//!   
+//!   if(dem>=3)
+//!   {
+//!      tanSo = soXung;
+//!      if(enaDLTS)
+//!      {
+//!         demDLTS++;
+//!         tong  = tong + tanSo;
+//!         if (demDLTS == 20)
+//!         {
+//!            tanSoSoSanh = (tong/20) - 1;
+//!            tong = 0;
+//!            demDLTS = 0;
+//!            enaDLTS = 0;
+//!         }
+//!      }
+//!      if (tanSo <= tanSoSoSanh)  
+//!      {
+//!         enaBuzzer = 1;
+//!         output_high(SIGNAL);
+//!      }
+//!      else
+//!      {
+//!         enaBuzzer = 0;
+//!         output_low(SIGNAL);
+//!      }
+//!      printf("Tan so: %lu - TanSoSS: %lu\r\n", tanSo, tanSoSoSanh);
+//!      soXung = 0;
+//!      dem=0;
+//!   }
+//!   set_timer1(40536);
+//!}
+
+void main()
+{
+   set_tris_a(0x04);
+   set_tris_c(0b00000100);
+   unsigned int16 gtadc = 0;
+   output_low(BUZZER);
+   output_low(SIGNAL);
+   setup_adc(ADC_CLOCK_DIV_2);
+   setup_adc_ports(sAN2 | VSS_VDD);
+   set_adc_channel(2);
+   
+//!   enable_interrupts(global);
+//!   enable_interrupts(INT_EXT);
+//!   ext_int_edge(H_TO_L); 
+//!   
+//!   enable_interrupts(int_timer1);
+//!   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+//!   set_timer1(40536); //0.01s
+//!
+//!   enaDLTS = 0;
+//!   delay_ms(2000);
+//!   enaDLTS = 1;
+   
+
+   while(true)
+   {
+      gtadc = READ_ADC();
+      printf("adc = %04lu\r\n", gtadc);
+      delay_ms(100);
+//!      if(input(pin_c2)==0)
+//!      {
+//!         printf("Cho cai dat lai tan so so sanh!!\n\r");
+//!         enaDLTS = 1;
+//!      }
+   }
+}
+
+
+
+
+
+
+//!#include <16F690.h>
+//!#FUSES NOWDT, hs, put, noprotect, mclr
+//!#use delay(internal=8000000)
+//!#use rs232(BAUD=9600,BITS=8,STOP=1,PARITY=N,RCV=PIN_b5,XMIT=PIN_b7)
+//!unsigned int16 soXung = 0, tanSoSoSanh = 0, tanSo = 0, tong = 0;  
+//!unsigned char dem = 0, demDLTS = 0;
+//!int1 enaBuzzer = 0, enaDLTS = 0;
+//!#define BUZZER  pin_c7
+//!#define SIGNAL  pin_c5
+//!#use fast_io(a)
+//!#use fast_io(c)
+//!
+//!#INT_EXT 
+//!void ngat_dem_xung()
+//!{
+//!   soXung = soXung + 1;
+//!}
+//!#int_timer1
+//!void ngat1()
+//!{
+//!   dem++;
+//!   if(enaBuzzer && (!enaDLTS))
+//!      output_toggle(BUZZER);
+//!   else 
+//!      output_low(BUZZER);
+//!   
+//!   if(dem>=3)
+//!   {
+//!      tanSo = soXung;
+//!      if(enaDLTS)
+//!      {
+//!         demDLTS++;
+//!         tong  = tong + tanSo;
+//!         if (demDLTS == 20)
+//!         {
+//!            tanSoSoSanh = (tong/20) - 1;
+//!            tong = 0;
+//!            demDLTS = 0;
+//!            enaDLTS = 0;
+//!         }
+//!      }
+//!      if (tanSo <= tanSoSoSanh)  
+//!      {
+//!         enaBuzzer = 1;
+//!         output_high(SIGNAL);
+//!      }
+//!      else
+//!      {
+//!         enaBuzzer = 0;
+//!         output_low(SIGNAL);
+//!      }
+//!      printf("Tan so: %lu - TanSoSS: %lu\r\n", tanSo, tanSoSoSanh);
+//!      soXung = 0;
+//!      dem=0;
+//!   }
+//!   set_timer1(40536);
+//!}
+//!
+//!void main()
+//!{
+//!   set_tris_a(0x04);
+//!   set_tris_c(0b00000100);
+//!   
+//!   output_low(BUZZER);
+//!   output_low(SIGNAL);
+//!   
+//!   enable_interrupts(global);
+//!   enable_interrupts(INT_EXT);
+//!   ext_int_edge(H_TO_L); 
+//!   
+//!   enable_interrupts(int_timer1);
+//!   setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+//!   set_timer1(40536); //0.01s
+//!
+//!   enaDLTS = 0;
+//!   delay_ms(2000);
+//!   enaDLTS = 1;
+//!   
+//!
+//!   while(true)
+//!   {
+//!      if(input(pin_c2)==0)
+//!      {
+//!         printf("Cho cai dat lai tan so so sanh!!\n\r");
+//!         enaDLTS = 1;
+//!      }
+//!   }
+//!}
+//!
+//!
+//!
